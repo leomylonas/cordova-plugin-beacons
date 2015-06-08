@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="co.mylonas.cordova.beacons" version="0.0.1">
+	<name>Bluetooth Beacons</name>
+	<description>Bluetooth Beacons</description>
+	
+	<platform name="android">
+		<js-module src="www/BluetoothBeacons.js" name="Beacons">
+			<clobbers target="BluetoothBeacons" />
+		</js-module>
+		
+		<config-file target="config.xml" parent="/*">
+			<feature name="Beacons">
+				<param name="android-package" value="co.mylonas.cordova.beacons.Beacons" />
+			</feature>
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+			<uses-permission android:name="android.permission.GET_TASKS" />
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service android:name="org.altbeacon.beacon.BeaconIntentProcessor" />
+			<service android:name="org.altbeacon.beacon.service.BeaconService" />
+			<service android:name="co.mylonas.cordova.beacons.BeaconService" />
+			<receiver android:name="co.mylonas.cordova.beacons.BeaconBroadcastReceiver">
+				<intent-filter>
+					<action android:name="android.intent.action.BOOT_COMPLETED" />
+				</intent-filter>
+			</receiver>
+		</config-file>
+		
+		<source-file src="src/Beacons.java" target-dir="src/co/mylonas/cordova/beacons" />
+		<source-file src="src/BeaconService.java" target-dir="src/co/mylonas/cordova/beacons" />
+		<source-file src="src/BeaconBroadcastReceiver.java" target-dir="src/co/mylonas/cordova/beacons" />
+	</platform>
+	
+	
+
+</plugin>
