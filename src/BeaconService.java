@@ -37,7 +37,7 @@ public class BeaconService extends Service implements BeaconConsumer {
 
 	private Intent currentIntent = null;
 	private String beaconUuid = null;
-	private String packageName = null;
+	private String packageLaunchActivity = null;
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -69,10 +69,10 @@ public class BeaconService extends Service implements BeaconConsumer {
 		File file = new File(getFilesDir().toString() + "/beaconSettings.txt");
 		if (intent != null) {
 			beaconUuid = intent.getExtras().get("beaconUuid").toString();
-			packageName = intent.getExtras().get("packageName").toString();
+			packageLaunchActivity = intent.getExtras().get("packageLaunchActivity").toString();
 			try {
 				FileOutputStream stream = new FileOutputStream(file);
-				stream.write((beaconUuid + "\n" + packageName).getBytes());
+				stream.write((beaconUuid + "\n" + packageLaunchActivity).getBytes());
 				stream.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -86,7 +86,7 @@ public class BeaconService extends Service implements BeaconConsumer {
 				stream.close();
 				String[] beaconSettings = new String(bytes).split("\n");
 				beaconUuid = beaconSettings[0];
-				packageName = beaconSettings[1];
+				packageLaunchActivity = beaconSettings[1];
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -162,7 +162,7 @@ public class BeaconService extends Service implements BeaconConsumer {
 	
 	public void startMainActivity() {
 		try {
-			Intent dialogIntent = new Intent(this, Class.forName(packageName + ".CordovaApp"));
+			Intent dialogIntent = new Intent(this, Class.forName(packageLaunchActivity));
 			dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			dialogIntent.putExtra("startedFromBackground", true);
 			startActivity(dialogIntent);

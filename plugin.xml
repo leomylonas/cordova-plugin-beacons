@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="co.mylonas.cordova.beacons" version="0.0.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="co.mylonas.cordova.beacons" version="0.0.2">
 	<name>Bluetooth Beacons</name>
 	<description>Bluetooth Beacons</description>
 	
@@ -18,7 +18,6 @@
 			<uses-permission android:name="android.permission.BLUETOOTH" />
 			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-			<uses-permission android:name="android.permission.GET_TASKS" />
 		</config-file>
 		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -35,6 +34,8 @@
 		<source-file src="src/Beacons.java" target-dir="src/co/mylonas/cordova/beacons" />
 		<source-file src="src/BeaconService.java" target-dir="src/co/mylonas/cordova/beacons" />
 		<source-file src="src/BeaconBroadcastReceiver.java" target-dir="src/co/mylonas/cordova/beacons" />
+		
+		<source-file src="libs/altbeacon.jar" target-dir="libs" framework="true" />
 	</platform>
 	
 	

@@ -1,6 +1,6 @@
 var bluetoothBeacons = {
-	init: function(beaconUuid, packageName, successCallback, errorCallback) {
-		cordova.exec(successCallback, errorCallback, "Beacons", "init", [beaconUuid, packageName]);
+	init: function(beaconUuid, packageLaunchActivity, successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "Beacons", "init", [beaconUuid, packageLaunchActivity]);
 	},
 	
 	didDetermineStateForRegion: function(successCallback, errorCallback) {

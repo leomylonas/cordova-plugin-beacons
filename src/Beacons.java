@@ -28,7 +28,7 @@ public class Beacons extends CordovaPlugin {
 		if (action.equals("init")) {
 			Intent beaconService = new Intent(this.cordova.getActivity().getBaseContext(), BeaconService.class);
 			beaconService.putExtra("beaconUuid", args.get(0).toString());
-			beaconService.putExtra("packageName", args.get(1).toString());
+			beaconService.putExtra("packageLaunchActivity", args.get(1).toString());
 			
 			this.cordova.getActivity().startService(beaconService);
 			
