@@ -152,6 +152,10 @@ public class BeaconService extends Service implements BeaconConsumer {
 		} catch (RemoteException e) {
 		
 		}
+		
+		if (currentIntent == null) {
+			startMainActivity();
+		}
 	}
 	
 	@Override
